@@ -1,14 +1,8 @@
 import React from "react";
 import Landing from "./components/Landing";
-import Login from "./components/Login";
-
 
 function App() {
-  return (
-    <>
-    <Landing/>
-        </>
-  );
+  return <Landing />;
 }
 
 export default App;
