@@ -227,6 +227,14 @@ h2 {
   font-weight: bold;
 }
 
+.menu-item img {
+  width: 100%; /* Ensures the image fills the container horizontally */
+  height: 200px; /* Sets a fixed height for all images */
+  object-fit: cover; /* Ensures the image scales to fit without distortion */
+  border-radius: 8px; /* Keeps the rounded corners */
+}
+
+
 /* About Us Section */
 /* About Us Section */
 #about-us {

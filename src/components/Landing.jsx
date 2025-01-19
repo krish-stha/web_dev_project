@@ -1,6 +1,15 @@
 import React from "react";
 import "./Landing.css";
-import newar from './newar.png';
+import newar from './images/newar.png';
+import yomari from './images/yomari.jpeg';
+import khajaset from './images/khajaset.webp';
+import chatamari from './images/chatamari.jpg'
+import bara from './images/bara.jpg'
+import fryrice from './images/fryrice.avif'
+
+
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 const Landing = () => {
   return (
@@ -48,13 +57,13 @@ const Landing = () => {
   <p>Explore the rich and traditional flavors of Newari cuisine.</p>
   <div className="menu-list">
     <div className="menu-item">
-      <img src="path_to_image/yomari.jpg" alt="Yomari" />
+      <img src={yomari} alt="Yomari" />
       <h3>Yomari</h3>
       <p>A steamed dumpling filled with jaggery and sesame, a traditional Newari sweet treat.</p>
       <p className="price">NPR 150</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/khaja_set.jpg" alt="Newari Khaja Set" />
+      <img src={khajaset} alt="Newari Khaja Set" />
       <h3>Newari Khaja Set</h3>
       <p>A hearty platter of various traditional Newari dishes served with rice.</p>
       <p className="price">NPR 500</p>
@@ -66,19 +75,19 @@ const Landing = () => {
       <p className="price">NPR 400</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/chatamari.jpg" alt="Chatamari" />
+      <img src={chatamari} alt="Chatamari" />
       <h3>Chatamari (Newari Pizza)</h3>
       <p>A crispy rice crepe topped with minced meat, vegetables, and spices.</p>
       <p className="price">NPR 250</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/wo.jpg" alt="Wo" />
+      <img src={bara} alt="Wo" />
       <h3>Wo (Lentil Pancake)</h3>
       <p>A savory lentil pancake served with chutney.</p>
       <p className="price">NPR 180</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/fried_rice.jpg" alt="Fried Rice" />
+      <img src={fryrice} alt="Fried Rice" />
       <h3>Fried Rice</h3>
       <p>Traditional Newari fried rice, mixed with vegetables and spices.</p>
       <p className="price">NPR 300</p>
@@ -207,21 +216,7 @@ const Landing = () => {
     Bringing you the best of authentic Newari cuisine, paired with a cozy ambiance and modern digital ordering experience. Enjoy a taste of Nepal's rich heritage!
   </p>
   
-  {/* Social Media Links */}
-  <div className="social-icons">
-    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-      <i className="fab fa-facebook-f"></i>
-    </a>
-    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-      <i className="fab fa-instagram"></i>
-    </a>
-    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-      <i className="fab fa-twitter"></i>
-    </a>
-    <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-      <i className="fab fa-linkedin-in"></i>
-    </a>
-  </div>
+
 
   {/* Footer Links */}
   <div className="footer-links">
