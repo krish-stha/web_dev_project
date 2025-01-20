@@ -1,14 +1,10 @@
 import React from "react";
 import "./Landing.css";
-import newar from './images/newar.png';
+import landingphoto from './images/landingphoto.png'
 import yomari from './images/yomari.jpeg';
 import khajaset from './images/khajaset.webp';
 import chatamari from './images/chatamari.jpg'
 import bara from './images/bara.jpg'
-import fryrice from './images/fryrice.avif'
-
-
-import '@fortawesome/fontawesome-free/css/all.min.css';
 
 
 const Landing = () => {
@@ -29,7 +25,7 @@ const Landing = () => {
           </li>
           <li>
             <a href="#login">Login</a>
-          </li>
+          </li> 
           <li>
             <a href="#login">Login as Admin</a>
           </li>
@@ -38,7 +34,7 @@ const Landing = () => {
 
       {/* Hero Section */}
       <div id="home" className="hero">
-        <img src={newar} alt="Newari Restaurant" className="hero-image" />
+        <img src={landingphoto} alt="Newari Restaurant" className="hero-image" />
         <h1 className="title">Newari Delights</h1>
         <p className="subtitle">Experience Authentic Newari Cuisine</p>
         <div className="buttons">
@@ -87,7 +83,7 @@ const Landing = () => {
       <p className="price">NPR 180</p>
     </div>
     <div className="menu-item">
-      <img src={fryrice} alt="Fried Rice" />
+      <img src="" alt="Fried Rice" />
       <h3>Fried Rice</h3>
       <p>Traditional Newari fried rice, mixed with vegetables and spices.</p>
       <p className="price">NPR 300</p>

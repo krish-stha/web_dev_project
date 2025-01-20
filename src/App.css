@@ -1,42 +1,167 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+
+/* General App Styles */
+
+*{
+  margin: 0px;
+}
+.app-container {
+  display: flex;
+  background-color: black;
+  color: white;
+  height: 100vh;
+  
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.main-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Sidebar Styles */
+.sidebar {
+  width: 250px;
+  background-color: black;
+  color: #ab5507;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.sidebar h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin: 10px 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.sidebar li:hover {
+  color: white;
+}
+
+/* Header Styles */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: black;
+  border-bottom: 2px solid #ab5507;
+}
+
+.header input {
+  padding: 10px;
+  font-size: 16px;
+  width: 50%;
+  border: 2px solid #ab5507;
+  background-color: black;
+  color: white;
+}
+
+.icons {
+  display: flex;
+  gap: 15px;
+}
+
+.bell-icon, .profile-icon {
+  font-size: 20px;
+  cursor: pointer;
+  color: #ab5507;
+}
+
+/* Dashboard Styles */
+.dashboard {
+  padding: 20px;
+  background-color: black;
+  color: white;
+  height: 100%;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
 }
 
 .card {
-  padding: 2em;
+  background-color: #ab5507;
+  color: black;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  flex: 1;
+  margin: 0 10px;
 }
 
-.read-the-docs {
-  color: #888;
+.chart {
+  background-color: black;
+  padding: 20px;
+  border: 2px solid #ab5507;
+  border-radius: 10px;
 }
+
+.chart-placeholder {
+  height: 300px;
+  background-color: #333;
+  color: #ab5507;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Menu Section Styles */
+.menu {
+  padding: 20px;
+  background-color: black;
+  color: white;
+}
+
+.menu h2 {
+  color: #ab5507;
+  margin-bottom: 20px;
+}
+
+.menu-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: black;
+}
+
+.menu-table th, .menu-table td {
+  border: 1px solid #ab5507;
+  padding: 10px;
+  text-align: center;
+  color: white;
+}
+
+.menu-table th {
+  background-color: #ab5507;
+  color: black;
+}
+
+.menu-table button {
+  padding: 5px 10px;
+  border: none;
+  background-color: #ab5507;
+  color: black;
+  cursor: pointer;
+  margin: 0 5px;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+}
+
+.menu-table button:hover {
+  background-color: white;
+  color: #ab5507;
+}
+

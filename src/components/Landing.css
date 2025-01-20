@@ -3,6 +3,7 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 .landing {
@@ -81,8 +82,8 @@ body {
   height: 120vh;
   position: relative;
   color: white;
-  background-image: url('./newar.png'); /* Use the image as a background */
   background-size: cover;
+  background-image: url('./images/newar.png'); /* Use the image as a background */
   background-position: center;
   text-align: center;
 }
@@ -95,7 +96,7 @@ body {
   font-size: 4rem; /* Increase font size */
   font-family: 'Georgia', serif; /* Use a professional font */
   font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Add a subtle shadow for readability */
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); 
   margin: 10px 0;
 }
 
