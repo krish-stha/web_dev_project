@@ -1,10 +1,15 @@
 import React from "react";
 import "./Landing.css";
-import landingphoto from './images/landingphoto.png'
+// import landingphoto from './images/landingphoto.png'
 import yomari from './images/yomari.jpeg';
 import khajaset from './images/khajaset.webp';
 import chatamari from './images/chatamari.jpg'
 import bara from './images/bara.jpg'
+import fried_rice from './images/fried_rice.jpg'
+import alu from './images/alu.avif'
+import momo from './images/momo.jpg'
+import dyakula from './images/dyakula.jpg'
+import sukuti from './images/sukuti.jpg'
 
 
 const Landing = () => {
@@ -34,7 +39,7 @@ const Landing = () => {
 
       {/* Hero Section */}
       <div id="home" className="hero">
-        <img src={landingphoto} alt="Newari Restaurant" className="hero-image" />
+        {/* <img src={landingphoto} alt="Newari Restaurant" className="hero-image" /> */}
         <h1 className="title">Newari Delights</h1>
         <p className="subtitle">Experience Authentic Newari Cuisine</p>
         <div className="buttons">
@@ -64,12 +69,7 @@ const Landing = () => {
       <p>A hearty platter of various traditional Newari dishes served with rice.</p>
       <p className="price">NPR 500</p>
     </div>
-    <div className="menu-item">
-      <img src="path_to_image/samay_baji.jpg" alt="Samay Baji" />
-      <h3>Samay Baji</h3>
-      <p>A festive Newari dish with beaten rice, lentils, meat, and chutney.</p>
-      <p className="price">NPR 400</p>
-    </div>
+   
     <div className="menu-item">
       <img src={chatamari} alt="Chatamari" />
       <h3>Chatamari (Newari Pizza)</h3>
@@ -83,61 +83,33 @@ const Landing = () => {
       <p className="price">NPR 180</p>
     </div>
     <div className="menu-item">
-      <img src="" alt="Fried Rice" />
+      <img src={fried_rice} alt="Fried Rice" />
       <h3>Fried Rice</h3>
       <p>Traditional Newari fried rice, mixed with vegetables and spices.</p>
       <p className="price">NPR 300</p>
     </div>
+    
     <div className="menu-item">
-      <img src="path_to_image/bara.jpg" alt="Bara" />
-      <h3>Bara</h3>
-      <p>Deep-fried lentil patties, served with chutney and pickles.</p>
-      <p className="price">NPR 200</p>
-    </div>
-    <div className="menu-item">
-      <img src="path_to_image/paneer_tikka.jpg" alt="Paneer Tikka" />
-      <h3>Paneer Tikka</h3>
-      <p>Marinated cottage cheese grilled to perfection with spices.</p>
-      <p className="price">NPR 350</p>
-    </div>
-    <div className="menu-item">
-      <img src="path_to_image/soup.jpg" alt="Newari Soup" />
-      <h3>Newari Soup</h3>
-      <p>A rich, spiced soup made with chicken, buffalo, or vegetables.</p>
-      <p className="price">NPR 180</p>
-    </div>
-    <div className="menu-item">
-      <img src="path_to_image/chura.jpg" alt="Chura" />
-      <h3>Chura</h3>
-      <p>Flattened rice mixed with spices and served as a light snack.</p>
-      <p className="price">NPR 120</p>
-    </div>
-    <div className="menu-item">
-      <img src="path_to_image/aalu_tama.jpg" alt="Aalu Tama" />
+      <img src={alu} alt="Aalu Tama" />
       <h3>Aalu Tama</h3>
       <p>A spicy and sour potato and bamboo shoot curry.</p>
       <p className="price">NPR 220</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/momo.jpg" alt="Momo" />
+      <img src={momo} alt="Momo" />
       <h3>Momo</h3>
       <p>Steamed dumplings stuffed with meat or vegetables, served with chutney.</p>
       <p className="price">NPR 150</p>
     </div>
+   
     <div className="menu-item">
-      <img src="path_to_image/chickpea_curry.jpg" alt="Chickpea Curry" />
-      <h3>Chickpea Curry</h3>
-      <p>A spicy chickpea curry served with rice or roti.</p>
-      <p className="price">NPR 180</p>
-    </div>
-    <div className="menu-item">
-      <img src="path_to_image/buff_curry.jpg" alt="Buff Curry" />
+      <img src={dyakula} alt="Buff Curry" />
       <h3>Buff Curry</h3>
       <p>A traditional Newari curry made with tender buffalo meat and spices.</p>
       <p className="price">NPR 350</p>
     </div>
     <div className="menu-item">
-      <img src="path_to_image/sukuti.jpg" alt="Sukuti" />
+      <img src={sukuti} alt="Sukuti" />
       <h3>Sukuti</h3>
       <p>Spicy dried meat, usually buffalo or goat, served with pickles.</p>
       <p className="price">NPR 250</p>
