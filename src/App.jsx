@@ -1,5 +1,5 @@
 // import React, { useState } from "react";
-// import Sidebar from "./components/Sidebar";
+// // import Sidebar from "./components/Sidebar";
 // import Header from "./components/Header";
 // import Dashboard from "./components/Dashboard";
 // import Orders from "./components/Orders";
@@ -38,11 +38,66 @@
 
 // export default App;
 
-import React from "react";
-import Landing from "./components/Landing";
+// import React from "react";
+// import Landing from "./components/Landing";
+// import Login from "./components/Login"
+
+// function App() {
+//   return < Login/>;
+// }
+
+// export default App;
+
+// import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+// import Layout from "./Layout"
+// import Dashboard from "./Dashboard"
+// import Menu from "./Menu"
+
+// function App() {
+//   return (
+//     <Router>
+//       <Layout>
+//         <Routes>
+//           <Route path="/" element={<Dashboard />} />
+//           <Route path="/menu" element={<Menu />} />
+          
+//         </Routes>
+//       </Layout>
+//     </Router>
+//   )
+// }
+
+// export default App
+
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import Sidebar from "./components/Sidebar"
+import Dashboard from "./pages/Dashboard"
+import Orders from "./pages/Orders"
+import Sales from "./pages/Sales"
+import Menu from "./pages/Menu"
+import Setup from "./pages/Setup"
+import "./App.css"
 
 function App() {
-  return <Landing />;
+  return (
+    <Router>
+      <div className="app-container">
+        <Sidebar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/sales" element={<Sales />} />
+            <Route path="/menu" element={<Menu />} />
+            <Route path="/setup" element={<Setup />} />
+          </Routes>
+        </main>
+      </div>
+    </Router>
+  )
 }
 
-export default App;
+export default App
+
+
