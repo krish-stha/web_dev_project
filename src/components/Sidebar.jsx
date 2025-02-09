@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import tea from "./images/tea.png"
 import { 
   HomeIcon, 
   ShoppingCartIcon, 
@@ -11,7 +12,7 @@ function Sidebar() {
   return (
     <div className="sidebar">
       <div className="logo">
-        <img src="/logo.png" alt="Khanpan" />
+        <img src={tea} alt="Khanpan" />
         <h2>Khanpan</h2>
       </div>
       

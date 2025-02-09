@@ -1,5 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts"
 
+
 function Dashboard() {
   const data = [
     { month: "Jan", amount: 800 },

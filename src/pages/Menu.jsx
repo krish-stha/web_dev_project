@@ -1,6 +1,5 @@
 import { PlusIcon } from '@heroicons/react/24/solid';
 
-
 function Menu() {
   const categories = ["Appetizers", "Main Course", "Beverages", "Desserts"]
   const menuItems = [

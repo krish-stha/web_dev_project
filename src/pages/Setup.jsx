@@ -1,10 +1,16 @@
+
+
 function Setup() {
     return (
       <div className="setup">
         <div className="header">
           <h1>Change Password</h1>
+          </div>
+
+          <div class="update_pass">
           <p>Update your password to keep your account secure</p>
-        </div>
+          </div>
+        
   
         <div className="setup-card">
           <form className="password-form">
