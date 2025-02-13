@@ -1,7 +1,11 @@
-import { EllipsisVerticalIcon } from '@heroicons/react/24/solid';
+"use client"
+
+import { useState } from "react"
+import { EllipsisVerticalIcon, PlusIcon } from "@heroicons/react/24/solid"
+import AddOrderModal from "./AddOrderModal"
 
 function Orders() {
-  const orders = [
+  const [orders, setOrders] = useState([
     {
       id: "#1",
       customer: "Table 4",
@@ -16,12 +20,23 @@ function Orders() {
       status: "Ready",
       total: "Rs. 750",
     },
-  ]
+  ])
+
+  const [isAddOrderModalOpen, setIsAddOrderModalOpen] = useState(false)
+
+  const handleAddOrder = (newOrder) => {
+    setOrders([...orders, newOrder])
+    setIsAddOrderModalOpen(false)
+  }
 
   return (
-    <div className="orders">
+    <div className="main-content">
       <div className="header">
         <h1>Khanpan Restaurant</h1>
+        <button className="add-order-btn" onClick={() => setIsAddOrderModalOpen(true)}>
+          <PlusIcon className="icon" />
+          Add Order
+        </button>
       </div>
 
       <div className="orders-table">
@@ -47,15 +62,19 @@ function Orders() {
                 </td>
                 <td>{order.total}</td>
                 <td>
-                <button className="icon-button">
-                        <EllipsisVerticalIcon className="icon" />
-                </button>
+                  <button className="icon-button">
+                    <EllipsisVerticalIcon className="icon" />
+                  </button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {isAddOrderModalOpen && (
+        <AddOrderModal onClose={() => setIsAddOrderModalOpen(false)} onAddOrder={handleAddOrder} />
+      )}
     </div>
   )
 }
