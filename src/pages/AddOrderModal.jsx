@@ -1,7 +1,6 @@
-"use client"
-
-import { useState } from "react"
-import { XMarkIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/solid"
+// AddOrderModal.jsx
+import { useState } from "react";
+import { XMarkIcon, MinusIcon, PlusIcon } from "@heroicons/react/24/solid";
 
 const menuItems = [
   {
@@ -34,54 +33,67 @@ const menuItems = [
     price: "Rs. 150",
     category: "Beverages",
   },
-]
+];
 
-const categories = ["All", ...new Set(menuItems.map((item) => item.category))]
+const categories = ["All", ...new Set(menuItems.map((item) => item.category))];
 
-function AddOrderModal({ onClose, onAddOrder }) {
-  const [selectedItems, setSelectedItems] = useState([])
-  const [customer, setCustomer] = useState("")
-  const [selectedCategory, setSelectedCategory] = useState("All")
+function AddOrderModal({ onClose, onAddOrder, occupiedTables }) {
+  const [selectedItems, setSelectedItems] = useState([]);
+  const [customer, setCustomer] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("All");
 
   const filteredMenuItems =
-    selectedCategory === "All" ? menuItems : menuItems.filter((item) => item.category === selectedCategory)
+    selectedCategory === "All"
+      ? menuItems
+      : menuItems.filter((item) => item.category === selectedCategory);
 
   const handleAddItem = (item) => {
-    const existingItem = selectedItems.find((i) => i.name === item.name)
+    const existingItem = selectedItems.find((i) => i.name === item.name);
     if (existingItem) {
-      setSelectedItems(selectedItems.map((i) => (i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i)))
+      setSelectedItems(
+        selectedItems.map((i) =>
+          i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i
+        )
+      );
     } else {
-      setSelectedItems([...selectedItems, { ...item, quantity: 1 }])
+      setSelectedItems([...selectedItems, { ...item, quantity: 1 }]);
     }
-  }
+  };
 
   const handleRemoveItem = (item) => {
-    setSelectedItems(selectedItems.filter((i) => i.name !== item.name))
-  }
+    setSelectedItems(selectedItems.filter((i) => i.name !== item.name));
+  };
 
   const handleQuantityChange = (item, change) => {
     setSelectedItems(
-      selectedItems.map((i) => (i.name === item.name ? { ...i, quantity: Math.max(1, i.quantity + change) } : i)),
-    )
-  }
+      selectedItems.map((i) =>
+        i.name === item.name
+          ? { ...i, quantity: Math.max(1, i.quantity + change) }
+          : i
+      )
+    );
+  };
 
   const calculateTotal = () => {
-    return selectedItems.reduce((sum, item) => sum + Number.parseInt(item.price.replace("Rs. ", "")) * item.quantity, 0)
-  }
+    return selectedItems.reduce(
+      (sum, item) =>
+        sum + Number.parseInt(item.price.replace("Rs. ", "")) * item.quantity,
+      0
+    );
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!customer || selectedItems.length === 0) return
-
+    e.preventDefault();
+    if (!customer || selectedItems.length === 0) return;
     const newOrder = {
       id: `#${Math.floor(Math.random() * 1000)}`,
       customer,
       items: selectedItems.map((item) => `${item.name} (${item.quantity})`).join(", "),
       status: "Preparing",
       total: `Rs. ${calculateTotal()}`,
-    }
-    onAddOrder(newOrder)
-  }
+    };
+    onAddOrder(newOrder);
+  };
 
   return (
     <div className="modal-overlay">
@@ -92,21 +104,29 @@ function AddOrderModal({ onClose, onAddOrder }) {
             <XMarkIcon className="icon" />
           </button>
         </div>
-
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="customer">Table Number</label>
-            <input
-              type="text"
+            <select
               id="customer"
               className="form-input"
-              placeholder="Enter table number"
               value={customer}
               onChange={(e) => setCustomer(e.target.value)}
               required
-            />
+            >
+              <option value="">Select a table</option>
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((tableNum) => (
+                <option
+                  key={tableNum}
+                  value={`Table ${tableNum}`}
+                  disabled={occupiedTables.includes(`Table ${tableNum}`)}
+                >
+                  Table {tableNum}
+                  {occupiedTables.includes(`Table ${tableNum}`) ? " (Occupied)" : ""}
+                </option>
+              ))}
+            </select>
           </div>
-
           <div className="form-group">
             <div className="categories">
               {categories.map((category) => (
@@ -121,12 +141,16 @@ function AddOrderModal({ onClose, onAddOrder }) {
               ))}
             </div>
           </div>
-
           <div className="form-group">
             <label>Menu Items</label>
             <div className="menu-items-grid">
               {filteredMenuItems.map((item) => (
-                <button key={item.name} type="button" className="menu-item-btn" onClick={() => handleAddItem(item)}>
+                <button
+                  key={item.name}
+                  type="button"
+                  className="menu-item-btn"
+                  onClick={() => handleAddItem(item)}
+                >
                   <div className="menu-item-content">
                     <h3>{item.name}</h3>
                     <p>{item.description}</p>
@@ -136,7 +160,6 @@ function AddOrderModal({ onClose, onAddOrder }) {
               ))}
             </div>
           </div>
-
           {selectedItems.length > 0 && (
             <div className="form-group">
               <label>Selected Items</label>
@@ -164,7 +187,6 @@ function AddOrderModal({ onClose, onAddOrder }) {
               </ul>
             </div>
           )}
-
           <div className="modal-footer">
             <div className="order-total">Total: Rs. {calculateTotal()}</div>
             <div className="modal-actions">
@@ -179,8 +201,7 @@ function AddOrderModal({ onClose, onAddOrder }) {
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default AddOrderModal
-
+export default AddOrderModal;

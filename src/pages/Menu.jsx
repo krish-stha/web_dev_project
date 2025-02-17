@@ -163,8 +163,8 @@ function Menu() {
                     onChange={handleInputChange}
                     required
                     className="form-input"
-                    placeholder="Enter item description"
-                    rows={3}
+                    
+                    rows={2}
                   />
                 </div>
                 <div className="form-group">
