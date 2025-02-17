@@ -1,18 +1,14 @@
 
+
 import { useState } from "react"
 import { PlusIcon, XMarkIcon } from "@heroicons/react/24/solid"
 import { motion, AnimatePresence } from "framer-motion"
+import { useMenu } from "../context/MenuContext"
+
+const categories = ["Appetizers", "Main Course", "Beverages", "Desserts"]
 
 function Menu() {
-  const [categories] = useState(["Appetizers", "Main Course", "Beverages", "Desserts"])
-  const [menuItems, setMenuItems] = useState([
-    {
-      name: "Chatamari",
-      description: "Traditional Newari pizza made with rice flour",
-      price: "Rs. 250",
-      category: "Main Course",
-    },
-  ])
+  const { menuItems, addMenuItem, updateMenuItem } = useMenu()
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [currentItem, setCurrentItem] = useState(null)
   const [activeCategory, setActiveCategory] = useState("All")
@@ -35,11 +31,9 @@ function Menu() {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (currentItem) {
-      // Edit existing item
-      setMenuItems(menuItems.map((item) => (item.name === currentItem.name ? { ...formData } : item)))
+      updateMenuItem(currentItem.name, formData)
     } else {
-      // Add new item
-      setMenuItems([...menuItems, formData])
+      addMenuItem(formData)
     }
     closeModal()
   }
@@ -163,7 +157,6 @@ function Menu() {
                     onChange={handleInputChange}
                     required
                     className="form-input"
-                    
                     rows={2}
                   />
                 </div>
@@ -215,3 +208,4 @@ function Menu() {
 }
 
 export default Menu
+

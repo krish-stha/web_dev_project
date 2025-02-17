@@ -1,128 +1,108 @@
-// Orders.jsx
-import { useState } from "react";
-import { EllipsisVerticalIcon, PlusIcon, XMarkIcon, MinusIcon } from "@heroicons/react/24/solid";
+"use client"
 
-const menuItems = [
-  { name: "Chatamari", description: "Traditional Newari pizza made with rice flour", price: "Rs. 250", category: "Main Course" },
-  { name: "Yomari", description: "Steamed rice dough filled with chaku", price: "Rs. 200", category: "Desserts" },
-  { name: "Choyla", description: "Spiced grilled buffalo meat", price: "Rs. 300", category: "Appetizers" },
-  { name: "Aalu Tama", description: "Bamboo shoot curry with potatoes", price: "Rs. 200", category: "Main Course" },
-  { name: "Lassi", description: "Traditional yogurt-based drink", price: "Rs. 150", category: "Beverages" },
-];
-
-const categories = ["All", ...new Set(menuItems.map((item) => item.category))];
+import { useState } from "react"
+import { EllipsisVerticalIcon, PlusIcon, XMarkIcon, MinusIcon } from "@heroicons/react/24/solid"
+import { useMenu } from "../context/MenuContext"
 
 function Orders() {
-  const [orders, setOrders] = useState([
-    { id: "#1", customer: "Table 4", items: "Chatamari (1), Yomari (2)", status: "Preparing", total: "Rs. 650" },
-    { id: "#2", customer: "Table 7", items: "Choyla (1), Aalu Tama (1), Lassi (1)", status: "Ready", total: "Rs. 650" },
-  ]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [modalMode, setModalMode] = useState("add"); // "add" or "update"
-  const [selectedOrder, setSelectedOrder] = useState(null);
-  const [occupiedTables, setOccupiedTables] = useState(["Table 4", "Table 7"]);
+  const { menuItems } = useMenu()
+  const [orders, setOrders] = useState([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalMode, setModalMode] = useState("add")
+  const [selectedOrder, setSelectedOrder] = useState(null)
+  const [occupiedTables, setOccupiedTables] = useState([])
 
-  const [selectedItems, setSelectedItems] = useState([]);
-  const [customer, setCustomer] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedItems, setSelectedItems] = useState([])
+  const [customer, setCustomer] = useState("")
+  const [selectedCategory, setSelectedCategory] = useState("All")
+
+  const categories = ["All", ...new Set(menuItems.map((item) => item.category))]
 
   const openAddModal = () => {
-    setModalMode("add");
-    setSelectedItems([]);
-    setCustomer("");
-    setIsModalOpen(true);
-  };
+    setModalMode("add")
+    setSelectedItems([])
+    setCustomer("")
+    setIsModalOpen(true)
+  }
 
   const openUpdateModal = (order) => {
-    setModalMode("update");
-    setSelectedOrder(order);
-    setSelectedItems(parseOrderItems(order.items));
-    setCustomer(order.customer);
-    setIsModalOpen(true);
-  };
+    setModalMode("update")
+    setSelectedOrder(order)
+    setSelectedItems(parseOrderItems(order.items))
+    setCustomer(order.customer)
+    setIsModalOpen(true)
+  }
 
   const parseOrderItems = (itemsString) => {
-    return itemsString.split(", ").map(item => {
-      const [name, quantityStr] = item.split(" (");
-      const quantity = parseInt(quantityStr.replace(")", ""));
-      const menuItem = menuItems.find(mi => mi.name === name);
-      return { ...menuItem, quantity };
-    });
-  };
+    return itemsString.split(", ").map((item) => {
+      const [name, quantityStr] = item.split(" (")
+      const quantity = Number.parseInt(quantityStr.replace(")", ""))
+      const menuItem = menuItems.find((mi) => mi.name === name)
+      return { ...menuItem, quantity }
+    })
+  }
 
   const handleAddOrUpdateOrder = () => {
     if (modalMode === "add") {
       const newOrder = {
         id: `#${Math.floor(Math.random() * 1000)}`,
         customer,
-        items: selectedItems.map(item => `${item.name} (${item.quantity})`).join(", "),
+        items: selectedItems.map((item) => `${item.name} (${item.quantity})`).join(", "),
         status: "Preparing",
         total: `Rs. ${calculateTotal()}`,
-      };
-      setOrders([...orders, newOrder]);
-      setOccupiedTables([...occupiedTables, customer]);
-    } else {
+      }
+      setOrders([...orders, newOrder])
+      setOccupiedTables([...occupiedTables, customer])
+    } else if (selectedOrder) {
       const updatedOrder = {
         ...selectedOrder,
-        items: selectedItems.map(item => `${item.name} (${item.quantity})`).join(", "),
+        items: selectedItems.map((item) => `${item.name} (${item.quantity})`).join(", "),
         total: `Rs. ${calculateTotal()}`,
-      };
-      setOrders(orders.map(order => order.id === updatedOrder.id ? updatedOrder : order));
+      }
+      setOrders(orders.map((order) => (order.id === updatedOrder.id ? updatedOrder : order)))
     }
-    setIsModalOpen(false);
-  };
+    setIsModalOpen(false)
+  }
 
   const handleStatusChange = (orderId, newStatus) => {
     setOrders(
       orders.map((order) => {
         if (order.id === orderId) {
           if (newStatus === "Delivered") {
-            setOccupiedTables(occupiedTables.filter((table) => table !== order.customer));
+            setOccupiedTables(occupiedTables.filter((table) => table !== order.customer))
           }
-          return { ...order, status: newStatus };
+          return { ...order, status: newStatus }
         }
-        return order;
-      })
-    );
-  };
+        return order
+      }),
+    )
+  }
 
-  const filteredMenuItems = selectedCategory === "All"
-    ? menuItems
-    : menuItems.filter((item) => item.category === selectedCategory);
+  const filteredMenuItems =
+    selectedCategory === "All" ? menuItems : menuItems.filter((item) => item.category === selectedCategory)
 
   const handleAddItem = (item) => {
-    const existingItem = selectedItems.find((i) => i.name === item.name);
+    const existingItem = selectedItems.find((i) => i.name === item.name)
     if (existingItem) {
-      setSelectedItems(
-        selectedItems.map((i) =>
-          i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i
-        )
-      );
+      setSelectedItems(selectedItems.map((i) => (i.name === item.name ? { ...i, quantity: i.quantity + 1 } : i)))
     } else {
-      setSelectedItems([...selectedItems, { ...item, quantity: 1 }]);
+      setSelectedItems([...selectedItems, { ...item, quantity: 1 }])
     }
-  };
+  }
 
   const handleRemoveItem = (item) => {
-    setSelectedItems(selectedItems.filter((i) => i.name !== item.name));
-  };
+    setSelectedItems(selectedItems.filter((i) => i.name !== item.name))
+  }
 
   const handleQuantityChange = (item, change) => {
     setSelectedItems(
-      selectedItems.map((i) =>
-        i.name === item.name
-          ? { ...i, quantity: Math.max(1, i.quantity + change) }
-          : i
-      )
-    );
-  };
+      selectedItems.map((i) => (i.name === item.name ? { ...i, quantity: Math.max(1, i.quantity + change) } : i)),
+    )
+  }
 
   const calculateTotal = () => {
-    return selectedItems.reduce(
-      (sum, item) => sum + Number.parseInt(item.price.replace("Rs. ", "")) * item.quantity,
-      0
-    );
-  };
+    return selectedItems.reduce((sum, item) => sum + Number.parseInt(item.price.replace("Rs. ", "")) * item.quantity, 0)
+  }
 
   return (
     <div className="main-content">
@@ -181,7 +161,12 @@ function Orders() {
                 <XMarkIcon className="icon" />
               </button>
             </div>
-            <form onSubmit={(e) => { e.preventDefault(); handleAddOrUpdateOrder(); }}>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault()
+                handleAddOrUpdateOrder()
+              }}
+            >
               {modalMode === "add" && (
                 <div className="form-group">
                   <label htmlFor="customer">Table Number</label>
@@ -224,12 +209,7 @@ function Orders() {
                 <label>Menu Items</label>
                 <div className="menu-items-grid">
                   {filteredMenuItems.map((item) => (
-                    <button
-                      key={item.name}
-                      type="button"
-                      className="menu-item-btn"
-                      onClick={() => handleAddItem(item)}
-                    >
+                    <button key={item.name} type="button" className="menu-item-btn" onClick={() => handleAddItem(item)}>
                       <div className="menu-item-content">
                         <h3>{item.name}</h3>
                         <p>{item.description}</p>
@@ -282,7 +262,8 @@ function Orders() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Orders;
+export default Orders
+
