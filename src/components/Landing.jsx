@@ -28,9 +28,10 @@ const Landing = () => {
           <li>
             <a href="#about-us">About Us</a>
           </li>
-          <li>
-            <a href="#login">Login</a>
-          </li> 
+        
+<li>
+  <a href="/login">Login</a>
+</li>
           <li>
             <a href="#login">Login as Admin</a>
           </li>

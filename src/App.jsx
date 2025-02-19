@@ -7,8 +7,11 @@ import Sales from "./pages/Sales";
 import Menu from "./pages/Menu";
 import Setup from "./pages/Setup";
 import { MenuProvider } from "./context/MenuContext";
+// import Login from "./components/Login";
+
 import "./App.css";
 import "./components/ProfileDropdown.css";
+import Landing from "./components/Landing";
 
 function App() {
   return (
@@ -22,7 +25,7 @@ function App() {
               <ProfileDropdown />
             </div>
             <Routes>
-              <Route path="/" element={<Dashboard />} />
+              <Route path="/" element={<Landing/>} />
               <Route path="/orders" element={<Orders />} />
               <Route path="/sales" element={<Sales />} />
               <Route path="/menu" element={<Menu />} />
@@ -36,3 +39,36 @@ function App() {
 }
 
 export default App;
+
+
+// Landing page
+
+// import React from 'react';
+// import Landing from './components/Landing';
+// // import Login from './components/Login'
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Landing />
+//     </div>
+//   );
+// }
+
+// export default App;
+
+//Login
+
+// import React from 'react';
+// // import Landing from './components/Landing';
+// import Login from './components/Login'
+
+// function App() {
+//   return (
+//     <div className="App">
+//       <Login />
+//     </div>
+//   );
+// }
+
+// export default App;
